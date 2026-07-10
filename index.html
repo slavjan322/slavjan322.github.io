@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вячеслав & Зоряна — Весільне запрошення</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome для іконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS для анімації при прокручуванні -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+
+    <!-- Ефект пелюсток, що падають -->
+    <div id="particles-container"></div>
+
+    <!-- 1. Ефект відкриття запрошення (Envelope Preloader) -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="openInvitation()">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="letter">
+                    <div class="letter-text">
+                        <h2>Вячеслав <br>&<br> Зоряна</h2>
+                        <p>12.09.2026</p>
+                        <span class="open-btn">Відкрити</span>
+                    </div>
+                </div>
+            </div>
+            <p class="envelope-hint">Натисніть на конверт, щоб відкрити запрошення</p>
+        </div>
+    </div>
+
+    <!-- Перемикач теми та музика -->
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Змінити тему"><i class="fas fa-moon"></i></button>
+        <button id="music-toggle" class="control-btn" title="Увімкнути музику"><i class="fas fa-music"></i></button>
+    </div>
+
+    <!-- Аудіоелемент для фонової музики -->
+    <audio id="bg-music" loop src="audio/music.mp3"></audio>
+
+    <!-- Головний контент сайту (прихований до відкриття) -->
+    <div id="main-content" class="fade-in-content">
+
+        <!-- 2. Головний екран (Hero) -->
+        <header class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
+                <p class="hero-subtitle">Запрошення на весілля</p>
+                <h1 class="hero-title">Вячеслав ❤️ Зоряна</h1>
+                <p class="hero-date">23 серпня 2026 року</p>
+                
+                <!-- Таймер -->
+                <div id="countdown" class="countdown">
+                    <div class="time-block"><span id="days">00</span><p>днів</p></div>
+                    <div class="time-block"><span id="hours">00</span><p>годин</p></div>
+                    <div class="time-block"><span id="minutes">00</span><p>хвилин</p></div>
+                    <div class="time-block"><span id="seconds">00</span><p>секунд</p></div>
+                </div>
+
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3. Історія кохання -->
+        <section class="story-section" data-aos="fade-up">
+            <div class="container">
+                <h2>Наша історія</h2>
+                <div class="story-content">
+                    <p>Кожна історія кохання по-своєму прекрасна, але наша — найулюбленіша. Ми пройшли шлях від першого випадкового погляду до усвідомленого кроку — створення міцної та щасливої родини. Попереду ціле життя, і ми хочемо почати його в колі найрідніших людей.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Програма дня (Таймлайн) -->
+        <section class="timeline-section" data-aos="fade-up">
+            <div class="container">
+                <h2>Програма дня</h2>
+                <div class="timeline">
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="timeline-icon"><i class="fas fa-church"></i></div>
+                        <div class="timeline-content">
+                            <h3>15:00</h3>
+                            <p>Урочиста церемонія розпису та збір гостей</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="timeline-icon"><i class="fas fa-glass-cheers"></i></div>
+                        <div class="timeline-content">
+                            <h3>16:00</h3>
+                            <p>Вітання молодят, фотосесія з гостями та фуршет</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
+                        <div class="timeline-content">
+                            <h3>17:00</h3>
+                            <p>Початок весільного банкету та розважальної програми</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="timeline-icon"><i class="fas fa-birthday-cake"></i></div>
+                        <div class="timeline-content">
+                            <h3>21:30</h3>
+                            <p>Святковий торт та завершення офіційної частини</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Галерея фотографій -->
+        <section class="gallery-section" data-aos="fade-up">
+            <div class="container">
+                <h2>Наша галерея</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-aos="zoom-in"><img src="photo/2.jpg?w=500" alt="Love Story 1"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="photo/3.jpg?w=500" alt="Love Story 2"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="photo/4.jpg?w=500" alt="Love Story 3"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="photo/5.jpg?w=500" alt="Love Story 4"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Де та як дістатися (Карта) -->
+        <section class="map-section" data-aos="fade-up">
+            <div class="container">
+                <h2>Місце проведення</h2>
+                <p class="location-text"><i class="fas fa-map-marker-alt"></i> Ресторан "Мускат", м. Івано-Франкове, вул. Яворівська, 58а</p>
+                <div class="map-container">
+                    <!-- Заміна на реальну карту через iframe (наразі заглушка) -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2575.717141506161!2d24.02234!3d49.81!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDQ4JzM2LjAiTiAyNMKwMDEnMjAuNCJF!5e0!3m2!1suk!2sua!4v1620000000000!5m2!1suk!2sua" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Дрес-код та Побажання -->
+        <section class="details-section" data-aos="fade-up">
+            <div class="container">
+                <div class="details-grid">
+                    <div class="details-card" data-aos="fade-right">
+                        <h2>Дрес-код</h2>
+                        <p>Будемо безмежно вдячні, якщо ви підтримаєте колірну гаму нашого весілля:</p>
+                        <div class="palette">
+                            <div class="color-circle" style="background-color: #E2D4C9;" title="Пудровий"></div>
+                            <div class="color-circle" style="background-color: #C5C1B4;" title="Маслиновий"></div>
+                            <div class="color-circle" style="background-color: #9A8B80;" title="Мокко"></div>
+                            <div class="color-circle" style="background-color: #D2C2B4;" title="Бежевий"></div>
+                            <div class="color-circle" style="background-color: #4A5560;" title="Смокі-грей"></div>
+                        </div>
+                    </div>
+                    <div class="details-card" data-aos="fade-left">
+                        <h2>Побажання</h2>
+                        <p><i class="fas fa-gift"></i> Замість традиційних квітів, які швидко в'януть, ми будемо раді пляшці вашого улюбленого вина або книзі для нашої майбутньої сімейної бібліотеки.</p>
+                        <p><i class="fas fa-envelope-open-text"></i> Ваші посмішки та присутність — найкращий подарунок. Але якщо ви захочете зробити матеріальний внесок, конверт буде ідеальним рішенням.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Форма RSVP -->
+        <section class="rsvp-section" data-aos="fade-up" id="rsvp">
+            <div class="container">
+                <h2>Підтвердження присутності</h2>
+                <p class="rsvp-subtitle">Будь ласка, заповніть форму до 1 серпня 2026 року</p>
+                
+                <form action="https://formspree.io/f/xkoldvvv" method="POST" class="rsvp-form">
+                    <div class="form-group">
+                        <label for="guest-name">Ваше Ім'я та Прізвище:</label>
+                        <input type="text" id="guest-name" name="name" required placeholder="Іван та Марія">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Чи зможете ви розділити з нами свято?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="attendance" value="yes" required> Так, прийду з задоволенням</label>
+                            <label><input type="radio" name="attendance" value="no"> На жаль, не вдасться</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guest-drinks">Алкогольні вподобання:</label>
+                        <select id="guest-drinks" name="drinks">
+                            <option value="wine-white">Вино біле</option>
+                            <option value="wine-red">Вино червоне</option>
+                            <option value="strong">Міцні напої</option>
+                            <option value="non-alcoholic">Безалкогольні напої</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Надіслати відповідь</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <p>Чекаємо на вас! Вячеслав ❤️ Зоряна</p>
+        </footer>
+
+    </div>
+
+    <!-- Підключення бібліотек для анімації -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
