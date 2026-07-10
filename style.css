@@ -1,4 +1,4 @@
-/* Оновлені стилі для весільного сайту */
+/* Оновлені стилі для весільного сайту з покращеною адаптивністю */
 :root {
     --bg-primary: #FAF8F5;
     --text-primary: #4A4A4A;
@@ -32,6 +32,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%; /* Запобігає авто-масштабуванню тексту на iOS */
 }
 
 .container {
@@ -47,8 +48,13 @@ h1, h2, h3 {
 }
 
 h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+}
+
+/* На дуже маленьких екранах зменшуємо заголовки */
+@media (max-width: 375px) {
+    h2 { font-size: 1.8rem; }
 }
 
 h2::after {
@@ -59,7 +65,7 @@ h2::after {
     text-align: center;
 }
 
-/* 1. Конверт */
+/* 1. Конверт (Еластичний для мобільних) */
 .envelope-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -69,36 +75,48 @@ h2::after {
     align-items: center;
     justify-content: center;
     transition: transform 0.8s ease-in-out, opacity 0.8s;
+    padding: 20px;
 }
 
 .envelope-wrapper {
     text-align: center;
+    width: 100%;
+    max-width: 320px; /* Обмежуємо максимальну ширину на мобільних */
 }
 
 .envelope {
     position: relative;
-    width: 280px;
-    height: 180px;
+    width: 100%;
+    aspect-ratio: 280 / 180; /* Робимо конверт повністю гумовим та пропорційним */
     background: #E2D4C9;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     cursor: pointer;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
 }
 
 .envelope .flap {
     position: absolute;
     top: 0; left: 0; width: 0; height: 0;
-    border-left: 140px solid transparent;
-    border-right: 140px solid transparent;
-    border-top: 100px solid #D2C2B4;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-top: 18vw solid #D2C2B4;
     transform-origin: top;
     transition: transform 0.4s 0.4s ease;
     z-index: 3;
 }
 
+/* Для великих екранів фіксуємо розміри бордерів трикутника */
+@media (min-width: 320px) {
+    .envelope .flap {
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 100px solid #D2C2B4;
+    }
+}
+
 .envelope .pocket {
     position: absolute;
-    bottom: 0; left: 0; width: 100%; height: 100px;
+    bottom: 0; left: 0; width: 100%; height: 60%;
     background: #CBB9AC;
     border-top: 1px solid rgba(0,0,0,0.05);
     z-index: 2;
@@ -106,8 +124,10 @@ h2::after {
 
 .envelope .letter {
     position: absolute;
-    bottom: 5px; left: 15px;
-    width: 250px; height: 150px;
+    bottom: 5px; 
+    left: 5%;
+    width: 90%; 
+    height: 85%;
     background: white;
     z-index: 1;
     transition: transform 0.4s ease;
@@ -120,11 +140,11 @@ h2::after {
 }
 
 .letter-text h2 {
-    font-size: 1.3rem; margin-bottom: 5px; color: #4A4A4A;
+    font-size: 1.2rem; margin-bottom: 5px; color: #4A4A4A;
 }
 .letter-text h2::after { content: ""; }
 .letter-text p { font-size: 0.8rem; color: #8A8A8A; margin-bottom: 10px;}
-.open-btn { background: #8E7C70; color: white; padding: 4px 12px; font-size: 0.75rem; border-radius: 2px; text-transform: uppercase;}
+.open-btn { background: #8E7C70; color: white; padding: 5px 15px; font-size: 0.75rem; border-radius: 2px; text-transform: uppercase;}
 
 /* Анімація відкриття */
 .envelope.open .flap {
@@ -133,21 +153,22 @@ h2::after {
 }
 
 .envelope.open .letter {
-    transform: translateY(-80px);
+    transform: translateY(-50%);
     z-index: 2;
 }
 
 .envelope-hint {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #8A8A8A;
     animation: pulse 1.5s infinite;
+    padding: 0 10px;
 }
 
 /* Плаваючі кнопки */
 .floating-controls {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 15px;
+    right: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -163,65 +184,79 @@ h2::after {
     box-shadow: 0 4px 10px var(--shadow);
     cursor: pointer;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 2. Головний екран */
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* Вирішення багу 100vh на мобільних браузерах (Safari/Chrome) */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('photo/1.jpg?w=1600') no-repeat center center/cover;
+    padding: 40px 20px;
 }
 
 .hero-content {
-    background: rgba(255, 255, 255, 0.85);
-    padding: 40px 60px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 20px;
     border-radius: 4px;
     text-align: center;
     color: #4A4A4A;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 500px;
 }
 
 .dark-theme .hero-content {
-    background: rgba(30, 30, 30, 0.85);
+    background: rgba(30, 30, 30, 0.9);
     color: #F5F5F5;
 }
 
-.hero-title { font-size: 3.5rem; margin: 15px 0; }
+.hero-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-title { 
+    font-size: 2.2rem; 
+    margin: 15px 0; 
+    word-wrap: break-word; /* Безпечне перенесення довгих слів */
+}
 .hero-title::after { content: ""; }
+.hero-date { font-size: 1.1rem; font-weight: 500; }
 
 .countdown {
-    display: flex; gap: 15px; justify-content: center; margin-top: 25px;
+    display: flex; 
+    gap: 8px; 
+    justify-content: center; 
+    margin-top: 25px;
+    flex-wrap: wrap; /* Дозволяє переносити блоки на супер-малих екранах */
 }
 
 .time-block {
     background: var(--card-bg);
-    padding: 10px 15px;
-    min-width: 70px;
+    padding: 8px 10px;
+    flex: 1;
+    min-width: 65px;
+    max-width: 80px;
     box-shadow: 0 4px 10px var(--shadow);
-}
-
-.time-block span { font-size: 1.6rem; font-family: 'Playfair Display', serif; display: block;}
-.time-block p { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase;}
-
-.btn-calendar {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 10px 20px;
-    background: var(--accent);
-    color: var(--bg-primary);
-    text-decoration: none;
-    font-size: 0.85rem;
     border-radius: 4px;
 }
 
+.time-block span { font-size: 1.3rem; font-family: 'Playfair Display', serif; display: block; font-weight: 600;}
+.time-block p { font-size: 0.65rem; color: var(--text-secondary); text-transform: uppercase;}
+
 /* Блоки тексту */
-section { padding: 80px 0; }
+section { padding: 60px 0; }
 
 .story-content {
-    max-width: 600px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: var(--text-secondary);
+    max-width: 600px; margin: 0 auto; text-align: center; font-size: 1rem; color: var(--text-secondary);
 }
 
 /* Таймлайн */
@@ -254,31 +289,48 @@ section { padding: 80px 0; }
 
 /* Галерея */
 .gallery-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 30px;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки на мобільних телефонах виглядають значно краще, ніж 1 */
+    gap: 12px; 
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .gallery-item img {
-    width: 100%; height: 250px; object-fit: cover; border-radius: 4px;
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+    border-radius: 4px;
     transition: transform 0.4s;
+}
+
+@media (min-width: 768px) {
+    .gallery-item img { height: 250px; }
 }
 
 .gallery-item img:hover { transform: scale(1.03); }
 
 /* Дрес-код */
 .details-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
 }
 
 .details-card {
-    background: var(--card-bg); padding: 40px 30px; border-radius: 6px; box-shadow: 0 4px 20px var(--shadow);
+    background: var(--card-bg); padding: 30px 20px; border-radius: 6px; box-shadow: 0 4px 20px var(--shadow);
+    text-align: center;
 }
 
-.palette { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-.color-circle { width: 45px; height: 45px; border-radius: 50%; box-shadow: inset 0 0 4px rgba(0,0,0,0.1); }
+.palette { display: flex; justify-content: center; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+.color-circle { width: 40px; height: 40px; border-radius: 50%; box-shadow: inset 0 0 4px rgba(0,0,0,0.1); }
 
 /* Форма RSVP */
 .rsvp-form {
-    background: var(--card-bg); padding: 40px; max-width: 550px; margin: 30px auto 0;
+    background: var(--card-bg); padding: 25px 20px; max-width: 550px; margin: 30px auto 0;
     border-radius: 6px; box-shadow: 0 4px 25px var(--shadow); text-align: left;
 }
 
@@ -287,15 +339,24 @@ section { padding: 80px 0; }
 .form-group input[type="text"], .form-group select {
     width: 100%; padding: 12px; border: 1px solid var(--text-secondary); background: var(--bg-primary);
     color: var(--text-primary); border-radius: 4px; font-family: inherit;
+    font-size: 16px; /* Запобігає автоматичному зуму полів у Safari на iPhone */
 }
 
-.radio-group label { display: block; font-weight: normal; margin-bottom: 8px; cursor: pointer; }
+.radio-group label { display: block; font-weight: normal; margin-bottom: 12px; cursor: pointer; position: relative; padding-left: 5px; }
+.radio-group input[type="radio"] { margin-right: 8px; transform: scale(1.1); }
+
 .btn-submit {
-    width: 100%; padding: 12px; background: var(--accent); color: var(--bg-primary);
-    border: none; border-radius: 4px; font-size: 1rem; cursor: pointer;
+    width: 100%; padding: 14px; background: var(--accent); color: var(--bg-primary);
+    border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; font-weight: 500;
 }
 
-.footer { padding: 40px 0; background: var(--card-bg); font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+.map-container {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.footer { padding: 40px 15px; background: var(--card-bg); font-family: 'Playfair Display', serif; font-size: 1.1rem; text-align: center; }
 
 /* Анімація пелюсток */
 #particles-container {
@@ -321,10 +382,12 @@ section { padding: 80px 0; }
 /* Адаптивність */
 @media (max-width: 768px) {
     .timeline::after { left: 20px; }
-    .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; }
+    .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; margin-bottom: 20px; }
     .timeline-item.left { text-align: left; }
     .timeline-item.right { left: 0; }
     .timeline-icon { left: 5px !important; right: auto; }
-    .hero-title { font-size: 2.3rem; }
-    h2 { font-size: 2rem; }
+    
+    .hero-title { font-size: 1.9rem; }
+    .hero-content { padding: 25px 15px; }
+    section { padding: 50px 0; }
 }

@@ -59,19 +59,26 @@ musicToggle.addEventListener('click', () => {
     }
 });
 
-// 5. Ефект падаючих пелюсток (Анімація)
+// 5. Ефект падаючих пелюсток (Оптимізовано для мобільних)
+const isMobile = window.innerWidth < 768;
+
 function createPetal() {
     const container = document.getElementById('particles-container');
     if (!container) return;
+    
+    // Якщо пристрій мобільний, обмежуємо максимальну кількість активних елементів
+    if (isMobile && container.children.length > 15) {
+        return;
+    }
     
     const petal = document.createElement('div');
     petal.classList.add('petal');
     
     petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.width = Math.random() * 15 + 10 + 'px';
-    petal.style.height = Math.random() * 15 + 10 + 'px';
+    petal.style.width = Math.random() * 12 + 8 + 'px';
+    petal.style.height = Math.random() * 12 + 8 + 'px';
     petal.style.animationDuration = Math.random() * 3 + 4 + 's';
-    petal.style.opacity = Math.random() * 0.7 + 0.3;
+    petal.style.opacity = Math.random() * 0.6 + 0.3;
     
     container.appendChild(petal);
     
@@ -79,4 +86,6 @@ function createPetal() {
         petal.remove();
     }, 6000);
 }
-setInterval(createPetal, 300);
+
+// Запускаємо генерацію пелюсток рідше на мобільних телефонах
+setInterval(createPetal, isMobile ? 500 : 300);
