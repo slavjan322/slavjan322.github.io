@@ -89,3 +89,49 @@ function createPetal() {
 
 // Запускаємо генерацію пелюсток рідше на мобільних телефонах
 setInterval(createPetal, isMobile ? 500 : 300);
+
+// 6. Асинхронне відправлення форми RSVP без перезавантаження сторінки
+const rsvpForm = document.getElementById('wedding-rsvp-form');
+const formFields = document.getElementById('form-fields');
+const formSuccess = document.getElementById('form-success');
+const submitBtn = document.getElementById('submit-btn');
+
+if (rsvpForm) {
+    rsvpForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Запобігаємо стандартному переходу браузера
+        
+        // Візуальний зворотний зв'язок: блокуємо кнопку та змінюємо текст
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Надсилання...';
+        
+        const data = new FormData(event.target);
+        
+        try {
+            const response = await fetch(event.target.action, {
+                method: rsvpForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Приховуємо поля вводу та відображаємо блок подяки
+                formFields.style.display = 'none';
+                formSuccess.style.display = 'block';
+                // Плавно скролимо до повідомлення про успіх
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // Якщо сервер Formspree відхилив запит
+                alert('Ой! Щось пішло не так. Спробуйте ще раз або повідомте молодят особисто.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Надіслати відповідь';
+            }
+        } catch (error) {
+            // У разі відсутності інтернету чи інших збоїв мережі
+            alert('Помилка з\'єднання. Будь ласка, перевірте підключення до мережі.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Надіслати відповідь';
+        }
+    });
+}
