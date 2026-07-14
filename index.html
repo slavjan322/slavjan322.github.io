@@ -154,21 +154,31 @@
                 <h2>Підтвердження присутності</h2>
                 <p class="rsvp-subtitle">Будь ласка, заповніть форму до 1 серпня 2026 року</p>
                 
-                <form action="https://formspree.io/f/xkoldvvv" method="POST" class="rsvp-form">
-                    <div class="form-group">
-                        <label for="guest-name">Вкажіть імена та прізвища гостей від вашої сім'ї:</label>
-                        <input type="text" id="guest-name" name="name" required placeholder="Іван та Марія Шевченко, син Ігор">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Чи зможете ви розділити з нами свято?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="attendance" value="yes" required> Так, прийду з задоволенням</label>
-                            <label><input type="radio" name="attendance" value="no"> На жаль, не вдасться</label>
+                <form action="https://formspree.io/f/xkoldvvv" method="POST" class="rsvp-form" id="wedding-rsvp-form">
+                    <!-- Поля форми, які будуть приховані після успіху -->
+                    <div id="form-fields">
+                        <div class="form-group">
+                            <label for="guest-name">Вкажіть імена та прізвища гостей від вашої сім'ї:</label>
+                            <input type="text" id="guest-name" name="name" required placeholder="Іван та Марія Шевченко, син Ігор">
                         </div>
+                        
+                        <div class="form-group">
+                            <label>Чи зможете ви розділити з нами свято?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="attendance" value="yes" required> Так, прийду з задоволенням</label>
+                                <label><input type="radio" name="attendance" value="no"> На жаль, не вдасться</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="submit-btn">Надіслати відповідь</button>
                     </div>
 
-                    <button type="submit" class="btn-submit">Надіслати відповідь</button>
+                    <!-- Блок подяки (початково прихований) -->
+                    <div id="form-success" style="display: none; text-align: center; padding: 20px 0;">
+                        <i class="fas fa-heart" style="font-size: 3rem; color: #8E7C70; margin-bottom: 15px; animation: pulse 1s infinite;"></i>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px;">Дякуємо за відповідь!</h3>
+                        <p style="color: var(--text-secondary);">Ваш відгук успішно збережено. Чекаємо на зустріч з вами!</p>
+                    </div>
                 </form>
             </div>
         </section>
