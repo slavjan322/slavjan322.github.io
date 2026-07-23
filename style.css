@@ -189,68 +189,79 @@ h2::after {
     justify-content: center;
 }
 
-/* 2. Головний екран */
+/* 2. Головний екран (Фото зверху, запрошення нижче) */
 .hero-section {
-    min-height: 100vh;
-    min-height: -webkit-fill-available; /* Вирішення багу 100vh на мобільних браузерах (Safari/Chrome) */
-    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('photo/1.jpg?w=1600') no-repeat center center/cover;
-    padding: 40px 20px;
+    padding: 20px 15px 40px;
+    background-color: var(--bg-primary);
+}
+
+.hero-photo-banner {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow);
+    margin-bottom: 25px;
+}
+
+.hero-photo-banner img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
 }
 
 .hero-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--card-bg);
     padding: 30px 20px;
-    border-radius: 4px;
+    border-radius: 8px;
     text-align: center;
-    color: #4A4A4A;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    color: var(--text-primary);
+    box-shadow: 0 10px 30px var(--shadow);
     width: 100%;
-    max-width: 500px;
-}
-
-.dark-theme .hero-content {
-    background: rgba(30, 30, 30, 0.9);
-    color: #F5F5F5;
+    max-width: 600px;
 }
 
 .hero-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 2px;
     text-transform: uppercase;
+    color: var(--text-secondary);
 }
 
 .hero-title { 
-    font-size: 2.2rem; 
-    margin: 15px 0; 
-    word-wrap: break-word; /* Безпечне перенесення довгих слів */
+    font-size: 2.1rem; 
+    margin: 12px 0; 
+    word-wrap: break-word; 
 }
 .hero-title::after { content: ""; }
-.hero-date { font-size: 1.1rem; font-weight: 500; }
+.hero-date { font-size: 1.05rem; font-weight: 500; color: var(--accent); }
 
 .countdown {
     display: flex; 
     gap: 8px; 
     justify-content: center; 
-    margin-top: 25px;
-    flex-wrap: wrap; /* Дозволяє переносити блоки на супер-малих екранах */
+    margin-top: 20px;
+    flex-wrap: wrap; 
 }
 
 .time-block {
-    background: var(--card-bg);
+    background: var(--bg-primary);
     padding: 8px 10px;
     flex: 1;
-    min-width: 65px;
-    max-width: 80px;
-    box-shadow: 0 4px 10px var(--shadow);
-    border-radius: 4px;
+    min-width: 60px;
+    max-width: 75px;
+    box-shadow: 0 2px 8px var(--shadow);
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.03);
 }
 
-.time-block span { font-size: 1.3rem; font-family: 'Playfair Display', serif; display: block; font-weight: 600;}
-.time-block p { font-size: 0.65rem; color: var(--text-secondary); text-transform: uppercase;}
+.time-block span { font-size: 1.25rem; font-family: 'Playfair Display', serif; display: block; font-weight: 600;}
+.time-block p { font-size: 0.6rem; color: var(--text-secondary); text-transform: uppercase;}
 
 /* Блоки тексту */
 section { padding: 60px 0; }
