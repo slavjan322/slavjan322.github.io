@@ -65,11 +65,11 @@ h2::after {
     text-align: center;
 }
 
-/* 1. Конверт (Еластичний для мобільних) */
+/* 1. Конверт (Преміум стиль із текстом та печаткою) */
 .envelope-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #FAF8F5;
+    background: #F5F0EB;
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -81,80 +81,157 @@ h2::after {
 .envelope-wrapper {
     text-align: center;
     width: 100%;
-    max-width: 320px; /* Обмежуємо максимальну ширину на мобільних */
+    max-width: 340px;
 }
 
 .envelope {
     position: relative;
     width: 100%;
-    aspect-ratio: 280 / 180; /* Робимо конверт повністю гумовим та пропорційним */
-    background: #E2D4C9;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    aspect-ratio: 280 / 190;
+    background: #E8DED5;
+    border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(118, 101, 90, 0.15);
     cursor: pointer;
-    margin: 0 auto 20px;
+    margin: 0 auto 25px;
+    perspective: 1000px;
 }
 
+/* Верхній клапан конверта */
 .envelope .flap {
     position: absolute;
     top: 0; left: 0; width: 0; height: 0;
-    border-left: 50vw solid transparent;
-    border-right: 50vw solid transparent;
-    border-top: 18vw solid #D2C2B4;
+    border-left: 170px solid transparent;
+    border-right: 170px solid transparent;
+    border-top: 110px solid #D9CBC0;
     transform-origin: top;
-    transition: transform 0.4s 0.4s ease;
-    z-index: 3;
+    transition: transform 0.5s 0.3s ease;
+    z-index: 4;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
 
-/* Для великих екранів фіксуємо розміри бордерів трикутника */
-@media (min-width: 320px) {
+@media (max-width: 360px) {
     .envelope .flap {
-        border-left: 150px solid transparent;
-        border-right: 150px solid transparent;
-        border-top: 100px solid #D2C2B4;
+        border-left: 50vw solid transparent;
+        border-right: 50vw solid transparent;
+        border-top: 32vw solid #D9CBC0;
     }
 }
 
+/* Лицева кишеня конверта */
 .envelope .pocket {
     position: absolute;
-    bottom: 0; left: 0; width: 100%; height: 60%;
-    background: #CBB9AC;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    z-index: 2;
+    bottom: 0; left: 0; width: 100%; height: 65%;
+    background: linear-gradient(135deg, #DFD3C8 0%, #D4C5B8 100%);
+    border-radius: 0 0 6px 6px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+    border-top: 1px solid rgba(255,255,255,0.4);
 }
 
+/* Текст на самому конверті */
+.envelope-front-title {
+    text-align: center;
+    color: #5A4E46;
+    padding-top: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.envelope-front-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.envelope-front-title h2::after {
+    content: ""; /* Видаляємо сердечко-значок після заголовка у конверті */
+    display: none;
+}
+
+.envelope-front-title p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #8E7C70;
+    font-weight: 500;
+}
+
+/* Воскова печатка по центру */
+.wax-seal {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42px;
+    height: 42px;
+    background: radial-gradient(circle at 30% 30%, #A89284, #7A675B);
+    border-radius: 50%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2), inset 0 2px 3px rgba(255,255,255,0.3);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Листівка всередині */
 .envelope .letter {
     position: absolute;
-    bottom: 5px; 
-    left: 5%;
-    width: 90%; 
+    bottom: 8px; 
+    left: 4%;
+    width: 92%; 
     height: 85%;
-    background: white;
-    z-index: 1;
-    transition: transform 0.4s ease;
+    background: #FFFFFF;
+    border-radius: 4px;
+    z-index: 2;
+    transition: transform 0.5s ease;
     padding: 15px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.letter-text {
+    text-align: center;
 }
 
 .letter-text h2 {
-    font-size: 1.2rem; margin-bottom: 5px; color: #4A4A4A;
+    font-size: 1.2rem; margin-bottom: 4px; color: #4A4A4A;
 }
-.letter-text h2::after { content: ""; }
-.letter-text p { font-size: 0.8rem; color: #8A8A8A; margin-bottom: 10px;}
-.open-btn { background: #8E7C70; color: white; padding: 5px 15px; font-size: 0.75rem; border-radius: 2px; text-transform: uppercase;}
+.letter-text h2::after { content: ""; display: none; }
+.letter-text p { font-size: 0.8rem; color: #8A8A8A; margin-bottom: 12px;}
+.open-btn { 
+    background: #8E7C70; 
+    color: white; 
+    padding: 6px 16px; 
+    font-size: 0.75rem; 
+    border-radius: 20px; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
 /* Анімація відкриття */
 .envelope.open .flap {
     transform: rotateX(180deg);
-    z-index: 0;
+    z-index: 1;
+}
+
+.envelope.open .wax-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
 }
 
 .envelope.open .letter {
-    transform: translateY(-50%);
-    z-index: 2;
+    transform: translateY(-55%);
+    z-index: 4;
 }
 
 .envelope-hint {
@@ -162,31 +239,6 @@ h2::after {
     color: #8A8A8A;
     animation: pulse 1.5s infinite;
     padding: 0 10px;
-}
-
-/* Плаваючі кнопки */
-.floating-controls {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-}
-
-.control-btn {
-    width: 45px; height: 45px;
-    border-radius: 50%;
-    border: none;
-    background: var(--card-bg);
-    color: var(--text-primary);
-    box-shadow: 0 4px 10px var(--shadow);
-    cursor: pointer;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* 2. Головний екран (Фото зверху, запрошення нижче) */
