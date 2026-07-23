@@ -25,6 +25,7 @@
                 <div class="pocket"></div>
                 <div class="letter">
                     <div class="letter-text">
+                        <h3 id="envelope-guest" style="font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: #8E7C70; margin-bottom: 8px; text-transform: uppercase; font-weight: 500;"></h3>
                         <h2>Вячеслав <br>&<br> Зоряна</h2>
                         <p>23.08.2026</p>
                         <span class="open-btn">Відкрити</span>
@@ -47,10 +48,16 @@
     <!-- Головний контент сайту (прихований до відкриття) -->
     <div id="main-content" class="fade-in-content">
 
-        <!-- 2. Головний екран (Hero) -->
+        <!-- 2. Головна шапка (Персональне фото зверху, запрошення нижче) -->
         <header class="hero-section">
-            <div class="hero-bg"></div>
-            <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
+            <!-- Блок для вашого головного фото -->
+            <div class="hero-photo-banner" data-aos="fade-down" data-aos-duration="1200">
+                <img src="photo/1.jpg" alt="Вячеслав та Зоряна" id="main-hero-photo">
+            </div>
+
+            <!-- Блок запрошення під фото -->
+            <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
+                <p id="hero-guest" style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: #8E7C70; margin-bottom: 8px;"></p>
                 <p class="hero-subtitle">Запрошення на весілля</p>
                 <h1 class="hero-title">Вячеслав ❤️ Зоряна</h1>
                 <p class="hero-date">23 серпня 2026 року</p>
@@ -80,7 +87,6 @@
             <div class="container">
                 <h2>Програма дня</h2>
                 <div class="timeline">
-                    <!-- Нова подія: Вінчання -->
                     <div class="timeline-item left" data-aos="fade-right">
                         <div class="timeline-icon"><i class="fas fa-cross"></i></div>
                         <div class="timeline-content">
@@ -155,7 +161,6 @@
                 <p class="rsvp-subtitle">Будь ласка, заповніть форму до 1 серпня 2026 року</p>
                 
                 <form action="https://formspree.io/f/xkoldvvv" method="POST" class="rsvp-form" id="wedding-rsvp-form">
-                    <!-- Поля форми, які будуть приховані після успіху -->
                     <div id="form-fields">
                         <div class="form-group">
                             <label for="guest-name">Вкажіть імена та прізвища гостей від вашої сім'ї:</label>
@@ -173,7 +178,6 @@
                         <button type="submit" class="btn-submit" id="submit-btn">Надіслати відповідь</button>
                     </div>
 
-                    <!-- Блок подяки (початково прихований) -->
                     <div id="form-success" style="display: none; text-align: center; padding: 20px 0;">
                         <i class="fas fa-heart" style="font-size: 3rem; color: #8E7C70; margin-bottom: 15px; animation: pulse 1s infinite;"></i>
                         <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px;">Дякуємо за відповідь!</h3>
