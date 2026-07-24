@@ -3,6 +3,7 @@ function openInvitation() {
     const envelope = document.querySelector('.envelope');
     envelope.classList.add('open');
     
+    // Збільшено затримку до 2000 мс (2 секунди)
     setTimeout(() => {
         document.getElementById('envelope-overlay').style.opacity = '0';
         document.getElementById('envelope-overlay').style.transform = 'translateY(-100vh)';
@@ -12,7 +13,7 @@ function openInvitation() {
         
         // Автоматичний запуск музики за бажанням
         // document.getElementById('bg-music').play();
-    }, 1200);
+    }, 2000); 
 }
 
 // 2. Таймер зворотного відліку
