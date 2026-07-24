@@ -218,7 +218,7 @@ h2::after {
     letter-spacing: 1px;
 }
 
-/* Анімація відкриття */
+/* 1. Спочатку відкривається верхній клапан */
 .envelope.open .flap {
     transform: rotateX(180deg);
     z-index: 1;
@@ -229,7 +229,8 @@ h2::after {
     transform: translate(-50%, -50%) scale(0.5);
 }
 
-.envelope.open .letter {
+/* 2. Потім висувається лист з запрошенням (коли додається клас letter-out) */
+.envelope.letter-out .letter {
     transform: translateY(-55%);
     z-index: 4;
 }
