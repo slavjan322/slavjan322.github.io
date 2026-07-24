@@ -1,19 +1,17 @@
 // 1. Відкриття конверту
 function openInvitation() {
-    const envelope = document.querySelector('.envelope');
+    // Знаходимо елементи конверта
+const envelope = document.querySelector('.envelope');
+
+envelope.addEventListener('click', function() {
+    // 1. Спочатку додаємо клас для відкриття верхнього клапана (кришки) конверта
     envelope.classList.add('open');
-    
+
+    // 2. Робимо паузу 600 мс (поки відкривається кришка) і тільки потім висуваємо лист із запрошенням
     setTimeout(() => {
-        document.getElementById('envelope-overlay').style.opacity = '0';
-        document.getElementById('envelope-overlay').style.transform = 'translateY(-100vh)';
-        
-        // Ініціалізація анімацій прокрутки AOS
-        AOS.init({ duration: 1000, once: true });
-        
-        // Автоматичний запуск музики за бажанням
-        // document.getElementById('bg-music').play();
-    }, 1200);
-}
+        envelope.classList.add('letter-out');
+    }, 600);
+});
 
 // 2. Таймер зворотного відліку
 const weddingDate = new Date(2026, 7, 23, 15, 0, 0).getTime(); // 23 серпня 2026
