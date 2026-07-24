@@ -104,7 +104,8 @@ h2::after {
     border-right: 170px solid transparent;
     border-top: 110px solid #D9CBC0;
     transform-origin: top;
-    transition: transform 0.5s 0.3s ease;
+    /* Змінено: збільшено час до 0.8s, прибрано затримку (0s) */
+    transition: transform 0.8s 0s ease; 
     z-index: 4;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
@@ -190,7 +191,8 @@ h2::after {
     background: #FFFFFF;
     border-radius: 4px;
     z-index: 2;
-    transition: transform 0.5s ease;
+    /* Змінено: анімація триває 0.8s і починається із затримкою 0.8s (після відкриття клапана) */
+    transition: transform 0.8s 0.8s ease;
     padding: 15px;
     box-sizing: border-box;
     display: flex;
